@@ -1,0 +1,23 @@
+<?php
+$entity_type = new EntityType();
+$entity_type->name = "player";
+$entity_type->addProperty('first_name', 'First Name', 'text', 'text');
+$entity_type->addProperty('last_name', 'Last Name', 'text', 'text');
+$entity_type->addProperty('email', 'Email', 'text', 'text');
+$entity_type->label = "Player";
+$entity_type->save();
+
+// Create bundle for entity.
+$entity_type_bundle = new Bundle();
+$entity_type_bundle->name = 'basic';
+$entity_type_bundle->label = 'Basic Player';
+$entity_type_bundle->entity_type = 'player';
+$entity_type_bundle->save();
+
+$entity_type = new EntityType();
+$entity_type->name = "game";
+$entity_type->label = "Game";
+$entity_type->addProperty('created', 'Created', 'integer', 'created');
+$entity_type->addProperty('changed', 'Changed', 'integer', 'changed');
+$entity_type->addProperty('pid', 'Player', 'integer');
+$entity_type->save();

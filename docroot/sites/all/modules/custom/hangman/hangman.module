@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Hangman module file.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function hangman_menu() {
+  $items['hangman'] = array(
+    'title' => 'Play Hangman',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hangman_landing_form'),
+    'file' => 'hangman.pages.inc',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'main-menu',
+  );
+
+  $items['hangman/game/%game'] = array(
+    'title' => 'Play Hangman',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hangman_form', 2),
+    'file' => 'hangman.pages.inc',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function hangman_form_eck__bundle__edit_form_alter(&$form, &$form_state, $entity_type_name, $bundle_name) {
+  if (arg(3) == 'game' && arg(4) == 'hangman') {
+    $bundle = bundle_load('game', 'hangman');
+    $form['config_max_guesses'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Max number of guesses'),
+      '#default_value' => !empty($bundle->config['max_guesses']) ? $bundle->config['max_guesses'] : '',
+    );
+    
+
+  }
+}

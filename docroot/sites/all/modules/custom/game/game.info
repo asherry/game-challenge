@@ -1,0 +1,4 @@
+name = Game API
+description = Game API for developers to build game bundles.
+core = 7.x
+package = Fun

@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Game module file.
+ */
+
+
+//$entity_type = EntityType::loadByName('game');
+//$entity_types = EntityType::loadAll();
+//$entity_type->delete();
+//
+//
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function game_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'eck' && $plugin_type == 'property_behavior') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+function game_load($gid) {
+  return entity_load_single('game', $gid);
+}
