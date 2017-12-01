@@ -53,3 +53,20 @@ function hangman_form_eck__bundle__edit_form_alter(&$form, &$form_state, $entity
     );
   }
 }
+
+/**
+ * Implements hook_entity_load().
+ */
+function hangman_entity_load($entities, $entity_type) {
+  if ($entity_type == 'game') {
+    foreach ($entities as $entity) {
+      if ($entity->type != 'hangman') {
+        continue;
+      }
+      // Calculate the score and add it to the entity.
+      $hangman = Hangman::loadByGame($entity);
+      // This should just be a method on the entity itself.
+      $entity->score = $hangman->score();
+    }
+  }
+}
