@@ -13,3 +13,18 @@ function game_ctools_plugin_directory($owner, $plugin_type) {
     return 'plugins/' . $plugin_type;
   }
 }
+
+/**
+ * Main game entity load.
+ *
+ * This is also the menu wildcard loader for '%game'.
+ *
+ * @param int $gid
+ *   Game ID.
+ *
+ * @return object
+ *   Fully loaded game object.
+ */
+function game_load($gid) {
+  return entity_load_single('game', $gid);
+}
