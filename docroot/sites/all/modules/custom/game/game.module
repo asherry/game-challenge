@@ -4,3 +4,12 @@
  * @file
  * Game module file.
  */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function game_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'eck' && $plugin_type == 'property_behavior') {
+    return 'plugins/' . $plugin_type;
+  }
+}
