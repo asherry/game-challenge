@@ -19,6 +19,24 @@ function hangman_menu() {
     'menu_name' => 'main-menu',
   );
 
+  $items['hangman/game/%game'] = array(
+    'title' => 'Play Hangman',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hangman_form', 2),
+    'file' => 'hangman.pages.inc',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['hangman/game/%game/result'] = array(
+    'title' => 'Your Results',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hangman_results_form', 2),
+    'file' => 'hangman.pages.inc',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   return $items;
 }
 
