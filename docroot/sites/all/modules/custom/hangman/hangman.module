@@ -4,3 +4,20 @@
  * @file
  * Hangman module file.
  */
+
+/**
+ * Implements hook_menu().
+ */
+function hangman_menu() {
+  $items['hangman'] = array(
+    'title' => 'Play Hangman',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('hangman_landing_form'),
+    'file' => 'hangman.pages.inc',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'main-menu',
+  );
+
+  return $items;
+}
